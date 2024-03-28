@@ -98,10 +98,10 @@ BinaryTree<char>* HuffmanCode::pqToHuffmanTree(){
         pq.pop();
 
         // Creates a combined tree.
-        BinaryTree<char> combinedTree;
-        combinedTree = combinedTree.merge(*tree1, *tree2);
+        BinaryTree<char>* combinedTree = new BinaryTree<char>();
+        *combinedTree = combinedTree->merge(*tree2, *tree1); // Greater on the left.
 
-        pq.push(&combinedTree); // Adds combined tree back into the pq.
+        pq.push(combinedTree); // Adds combined tree back into the pq.
     }
     return pq.top(); // Returns the top/only value in pq.
 }
@@ -128,7 +128,7 @@ map<char, string> HuffmanCode::createEncodings(const BinaryTree<char>* huffTree)
  * map<char, string> encodings: the map of encodings.
  * Return: None. encodings is fully populated for the tree.
  */
-void HuffmanCode::encodingHelper(string currCode, const BTNode* currNode, map<char, string> encodings){
+void HuffmanCode::encodingHelper(string currCode, const BTNode* currNode, map<char, string> &encodings){
     if (currNode == nullptr) // When a node is not a leaf, but missing a child.
     {
         return;
@@ -142,4 +142,21 @@ void HuffmanCode::encodingHelper(string currCode, const BTNode* currNode, map<ch
         encodingHelper(currCode + "0", currNode->getLeft(), encodings); // Add 0 to code and move left.
         encodingHelper(currCode + "1", currNode->getRight(), encodings); // Add 1 to code and move right.
     }
+}
+
+/*
+ * encodingsToString.
+ * Description: converts the encodings map to the proper string representation.
+ * Parameters: map<char, string> encodings: the map of encodings.
+ * Return: string encodingsText: the representation of the encodings.
+ */
+string HuffmanCode::encodingsToString(map<char, string> encodings) {
+    string encodingsText = "";
+    for (char letter = 'a'; letter <= 'y'; letter++)
+    {
+        encodingsText += letter + " " + encodings[letter] + "\n";
+    }
+    encodingsText += encodings['z']; // No new line after last character.
+    return encodingsText;
+    
 }

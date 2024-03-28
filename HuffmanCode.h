@@ -28,9 +28,9 @@ public:
     BinaryTree<char>*                   pqToHuffmanTree();
     map<char, string>                   createEncodings(const BinaryTree<char>* huffTree);
 
-
+    string                              encodingsToString(map<char, string> encodings);
 private:
     priority_queue<BinaryTree<char>*, vector<BinaryTree<char>*>, greater<BinaryTree<char>*>> pq; // pqueue of type BinaryTree<char>, stored using vector, smallest element at top.
 
-    void                                encodingHelper(string currCode, const BTNode* currNode, map<char, string> encodings);
+    void                                encodingHelper(string currCode, const BTNode* currNode, map<char, string> &encodings);
 };
