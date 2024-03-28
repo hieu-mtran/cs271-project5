@@ -143,3 +143,33 @@ void BinaryTree<T>::clear(BTNode* node)
         delete node;
     }
 }
+
+template<class T>
+bool BinaryTree<T>::operator>(const BinaryTree<T>& other) const {
+    return root->count > other.root->count;
+}
+
+template<class T>
+bool BinaryTree<T>::operator<(const BinaryTree<T>& other) const {
+    return root->count < other.root->count;
+}
+
+template<class T>
+bool BinaryTree<T>::operator>=(const BinaryTree<T>& other) const {
+    return root->count >= other.root->count;
+}
+
+template<class T>
+bool BinaryTree<T>::operator<=(const BinaryTree<T>& other) const {
+    return root->count <= other.root->count;
+}
+
+template<class T>
+bool BinaryTree<T>::operator==(const BinaryTree<T>& other) const {
+    return root->count == other.root->count;
+}
+
+template<class T>
+bool BinaryTree<T>::operator!=(const BinaryTree<T>& other) const {
+    return root->count != other.root->count;
+}
