@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 #include <queue>
+#include <vector>
+#include <map>
 #include "BinaryTree.cpp"
 
 
@@ -19,7 +21,9 @@ public:
     HuffmanCode();
     ~HuffmanCode();
 
-
+    map<char, int>              createFreqTable(string counts);
+    BinaryTree<char>            createHuffTree(const map<char, int>& freqTable);
+    map<char, string>           createEncodings(const BinaryTree<char> huffTree);
 
 
 private:
