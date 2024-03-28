@@ -70,7 +70,7 @@ BinaryTree<T>& BinaryTree<T>::operator=(const BinaryTree<T>& other)
 // Makes a copy of a node and its children
 //============================================================================
 template<class T>
-BTNode* BinaryTree<T>::copy(BTNode* node) 
+BTNode* BinaryTree<T>::copy(BTNode* node) const
 {
     if (node == NULL) 
         return NULL;

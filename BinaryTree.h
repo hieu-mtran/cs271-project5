@@ -4,6 +4,8 @@
 // BinaryTree.h
 // This is the header file for the Binary Tree class
 //============================================================================
+#ifndef BINARYTREE_H
+#define BINARYTREE_H
 
 #include <iostream>
 #include <string>
@@ -18,6 +20,8 @@ private:
     BTNode* left;
     BTNode* right;
     BTNode* parent;
+
+    template <typename> friend class BinaryTree;
 public:
     BTNode();
     BTNode(char letter, int count);
@@ -75,6 +79,7 @@ public:
     }
 };
 
+
 template<class T>
 class BinaryTree 
 {
@@ -84,7 +89,7 @@ public:
     BinaryTree<T>& operator=(const BinaryTree<T>& other);
 
     BTNode*         getRoot() const;
-    BTNode*         copy(BTNode* node);
+    BTNode*         copy(BTNode* node) const;
     void            insert(BTNode* node);
     BinaryTree<T>   merge(const BinaryTree<T>& tree1, const BinaryTree<T>& tree2) const;
     BTNode*         mergeTrees(BTNode* root1, BTNode* root2) const; // helper function for merge
@@ -101,3 +106,5 @@ public:
 private:
     BTNode* root;
 };
+
+#endif

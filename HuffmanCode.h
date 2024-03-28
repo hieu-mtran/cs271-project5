@@ -4,14 +4,15 @@
 // HuffmanCode.h
 // This is the header file for the Huffman Code class
 //============================================================================
+#ifndef HUFFMANCODE_H
+#define HUFFMANCODE_H
 
 #include <iostream>
 #include <string>
 #include <queue>
 #include <vector>
 #include <map>
-#include "BinaryTree.cpp"
-
+#include "BinaryTree.h"
 
 using namespace std;
 
@@ -22,15 +23,17 @@ public:
     ~HuffmanCode();
 
     map<char, int>                      createFreqTable(string counts);
-    BinaryTree<char>*                   freqToBinaryTree(char letter, int freq);
-    priority_queue<BinaryTree<char>*, vector<BinaryTree<char>*>, greater<BinaryTree<char>*>>    freqTableToPQ(const map<char, int>& freqTable);
+    BinaryTree<BTNode>*                   freqToBinaryTree(char letter, int freq);
+    priority_queue<BinaryTree<BTNode>*, vector<BinaryTree<BTNode>*>, greater<BinaryTree<BTNode>*> >    freqTableToPQ(const map<char, int>& freqTable);
 
-    BinaryTree<char>*                   pqToHuffmanTree();
-    map<char, string>                   createEncodings(const BinaryTree<char>* huffTree);
+    BinaryTree<BTNode>*                   pqToHuffmanTree();
+    map<char, string>                   createEncodings(const BinaryTree<BTNode>* huffTree);
 
     string                              encodingsToString(map<char, string> encodings);
 private:
-    priority_queue<BinaryTree<char>*, vector<BinaryTree<char>*>, greater<BinaryTree<char>*>> pq; // pqueue of type BinaryTree<char>, stored using vector, smallest element at top.
+    priority_queue<BinaryTree<BTNode>*, vector<BinaryTree<BTNode>*>, greater<BinaryTree<BTNode>*> > pq; // pqueue of type BinaryTree<BTNode>, stored using vector, smallest element at top.
 
     void                                encodingHelper(string currCode, const BTNode* currNode, map<char, string> &encodings);
 };
+
+#endif
