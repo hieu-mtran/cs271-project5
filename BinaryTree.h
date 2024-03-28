@@ -22,6 +22,27 @@ public:
     BTNode();
     BTNode(char letter, int count);
 
+    // Getter methods
+    BTNode* getLeft() const {
+        return left;
+    }
+
+    BTNode* getRight() const {
+        return right;
+    }
+
+    BTNode* getParent() const {
+        return parent;
+    }
+
+    char getData() const {
+        return data;
+    }
+
+    bool isLeaf() const {
+        return left == nullptr && right == nullptr;
+    }
+
     // Comparison operators
     bool operator>(const BTNode& other) const 
     {
@@ -60,7 +81,9 @@ class BinaryTree
 public:
     BinaryTree();
     ~BinaryTree();
+    BinaryTree<T>& operator=(const BinaryTree<T>& other);
 
+    BTNode*         getRoot() const;
     BTNode*         copy(BTNode* node);
     void            insert(BTNode* node);
     BinaryTree<T>   merge(const BinaryTree<T>& tree1, const BinaryTree<T>& tree2) const;

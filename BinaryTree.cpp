@@ -51,6 +51,21 @@ BinaryTree<T>::~BinaryTree()
 }
 
 //============================================================================
+// Assignment operator
+//============================================================================
+template<class T>
+BinaryTree<T>& BinaryTree<T>::operator=(const BinaryTree<T>& other)
+{
+    if (this != &other)
+    {
+        clear(root);
+        root = copy(other.root);
+    }
+    return *this;
+}
+
+
+//============================================================================
 // copy
 // Makes a copy of a node and its children
 //============================================================================
@@ -70,6 +85,11 @@ BTNode* BinaryTree<T>::copy(BTNode* node)
     return z;
 }
 
+template<class T>
+BTNode* BinaryTree<T>::getRoot() const
+{
+    return root;
+}
 //============================================================================
 // insert
 // Inserts a new node into a binary tree (with BST properties)
