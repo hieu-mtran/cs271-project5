@@ -56,6 +56,9 @@ public:
     char getData() const {
         return data;
     }
+    int getCount() const {
+        return count;
+    }
 
     bool isLeaf() const {
         return left == nullptr && right == nullptr;

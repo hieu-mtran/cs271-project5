@@ -16,7 +16,7 @@ using namespace std;
 
 
 HuffmanCode::HuffmanCode() {
-    pq = priority_queue<BinaryTree<BTNode>*, vector<BinaryTree<BTNode>*>, greater<BinaryTree<BTNode>*> >();
+    pq = priority_queue<BinaryTree<BTNode*>*, vector<BinaryTree<BTNode*>*>, CompareBinaryTrees>();
 }
 
 HuffmanCode::~HuffmanCode() {
@@ -67,13 +67,13 @@ map<char, int> HuffmanCode::createFreqTable(string counts) {
  * freqToBinaryTree.
  * Description: converts letter and freq to a one node binary tree storing that information.
  * Parameters: char letter: the letter to be stored, int freq: the freq of that letter.
- * Return: BinaryTree<BTNode>* tree: the newly created one node binary tree.
+ * Return: BinaryTree<BTNode*>* tree: the newly created one node binary tree.
  */
-BinaryTree<BTNode>* HuffmanCode::freqToBinaryTree(char letter, int freq){
+BinaryTree<BTNode*>* HuffmanCode::freqToBinaryTree(char letter, int freq){
     BTNode* node = new BTNode(letter, freq); // New node with values.
 
     // New tree with one node at root
-    BinaryTree<BTNode>* tree = new BinaryTree<BTNode>();
+    BinaryTree<BTNode*>* tree = new BinaryTree<BTNode*>();
     tree->insert(node);
 
     return tree;
@@ -85,14 +85,15 @@ BinaryTree<BTNode>* HuffmanCode::freqToBinaryTree(char letter, int freq){
  * Parameters: map<char, int>&: the frequency table.
  * Return: priority queue pq: the pqueue of single node binary trees. pq is populated with the binary trees.
  */
-priority_queue<BinaryTree<BTNode>*, vector<BinaryTree<BTNode>*>, greater<BinaryTree<BTNode>*> > HuffmanCode::freqTableToPQ(const map<char, int>& freqTable) {
+priority_queue<BinaryTree<BTNode*>*, vector<BinaryTree<BTNode*>*>, CompareBinaryTrees> HuffmanCode::freqTableToPQ(const map<char, int>& freqTable) {
     int freq;
     for (char ltr = 'a'; ltr <= 'z'; ltr++) // Each val in freqTable.
     {
         freq = freqTable.at(ltr); 
-        BinaryTree<BTNode>* tree = freqToBinaryTree(ltr, freq); // Create single node binary tree.
+        BinaryTree<BTNode*>* tree = freqToBinaryTree(ltr, freq); // Create single node binary tree.
         pq.push(tree); // Add tree to pq.
     }
+    
     return pq;
 }
 
@@ -100,35 +101,42 @@ priority_queue<BinaryTree<BTNode>*, vector<BinaryTree<BTNode>*>, greater<BinaryT
  * pqToHuffmanTree.
  * Description: converts a priority queue of single node binary trees to a huffman tree.
  * Parameters: none.
- * Return: BinaryTree<BTNode> pq.top(): the only binary tree in the pqueue. The binary tree is a proper Huffman tree.
+ * Return: BinaryTree<BTNode*> pq.top(): the only binary tree in the pqueue. The binary tree is a proper Huffman tree.
  */
-BinaryTree<BTNode>* HuffmanCode::pqToHuffmanTree(){
+BinaryTree<BTNode*>* HuffmanCode::pqToHuffmanTree(){
     while (pq.size() > 1) // Repeat until only one large combined tree in pq.
     {
+        // cout << pq.top()->getRoot()->getCount() << endl;
         // Gets the two smallest trees.
-        BinaryTree<BTNode>* tree1 = pq.top();
+        BinaryTree<BTNode*>* tree1 = pq.top();
+        // cout << tree1->getRoot()->getData() << " ";
         pq.pop();
-        BinaryTree<BTNode>* tree2 = pq.top();
+        BinaryTree<BTNode*>* tree2 = pq.top();
+        // cout << tree2->getRoot()->getData() << " ";
+
         pq.pop();
 
         // Creates a combined tree.
-        BinaryTree<BTNode>* combinedTree = new BinaryTree<BTNode>();
+        BinaryTree<BTNode*>* combinedTree = new BinaryTree<BTNode*>();
         *combinedTree = combinedTree->merge(*tree2, *tree1); // Greater on the left.
+        // cout << combinedTree->getRoot()->getData() << endl;
 
         pq.push(combinedTree); // Adds combined tree back into the pq.
     }
+
     return pq.top(); // Returns the top/only value in pq.
 }
 
 /*
  * createEncodings.
  * Description: uses a huffman binary tree to create a map of letters and their huffman code.
- * Parameters: BinaryTree<BTNode>* huffTree: the Huffman tree to be used to create the codes.
+ * Parameters: BinaryTree<BTNode*>* huffTree: the Huffman tree to be used to create the codes.
  * Return: map<char, string> encodings: a map of letters to their Huffman codes.
  */
-map<char, string> HuffmanCode::createEncodings(const BinaryTree<BTNode>* huffTree) {
+map<char, string> HuffmanCode::createEncodings(const BinaryTree<BTNode*>* huffTree) {
+    // cout << huffTree->getRoot()->getData();
     map<char, string> encodings; 
-    string code; // Empty to start.
+    string code = ""; // Empty to start.
     BTNode* root = huffTree->getRoot(); // Starting at the root node.
     encodingHelper(code, root, encodings);
     return encodings; // Return the final mapping.
@@ -143,6 +151,7 @@ map<char, string> HuffmanCode::createEncodings(const BinaryTree<BTNode>* huffTre
  * Return: None. encodings is fully populated for the tree.
  */
 void HuffmanCode::encodingHelper(string currCode, const BTNode* currNode, map<char, string> &encodings){
+    cout << currCode <<endl;
     if (currNode == nullptr) // When a node is not a leaf, but missing a child.
     {
         return;
@@ -172,8 +181,10 @@ string HuffmanCode::encodingsToString(map<char, string> encodings) {
         encodingsText += " ";
         encodingsText += encodings[letter];
         encodingsText += "\n";
-        cout << encodings.at(letter) << endl;
+        // cout << encodings.at(letter) << endl;
     }
+    encodingsText += 'z';
+    encodingsText += ' ';
     encodingsText += encodings['z']; // No new line after last character.
     return encodingsText;
     

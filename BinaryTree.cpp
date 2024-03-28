@@ -131,10 +131,16 @@ template<typename T>
 BinaryTree<T> BinaryTree<T>::merge(const BinaryTree<T>& tree1, const BinaryTree<T>& tree2) const 
 {
     BinaryTree<T> mergedTree;
+    mergedTree.root = new BTNode();
+    if (tree1.root != nullptr) {
+        mergedTree.root->count += tree1.root->count;
+    }
+    if (tree2.root != nullptr) {
+        mergedTree.root->count += tree2.root->count;
+    }
 
-    // Copy tree1 and tree2 into mergedTree
-    mergedTree.root = copy(tree1.root);
-    mergedTree.root = mergeTrees(mergedTree.root, tree2.root);
+    mergedTree.root->left = copy(tree1.root);
+    mergedTree.root->right = copy(tree2.root);
 
     return mergedTree;
 }
@@ -173,30 +179,30 @@ void BinaryTree<T>::clear(BTNode* node)
 
 template<class T>
 bool BinaryTree<T>::operator>(const BinaryTree<T>& other) const {
-    return root->count > other.root->count;
+    return root > other.root;
 }
 
 template<class T>
 bool BinaryTree<T>::operator<(const BinaryTree<T>& other) const {
-    return root->count < other.root->count;
+    return root < other.root;
 }
 
 template<class T>
 bool BinaryTree<T>::operator>=(const BinaryTree<T>& other) const {
-    return root->count >= other.root->count;
+    return root >= other.root;
 }
 
 template<class T>
 bool BinaryTree<T>::operator<=(const BinaryTree<T>& other) const {
-    return root->count <= other.root->count;
+    return root <= other.root;
 }
 
 template<class T>
 bool BinaryTree<T>::operator==(const BinaryTree<T>& other) const {
-    return root->count == other.root->count;
+    return root == other.root;
 }
 
 template<class T>
 bool BinaryTree<T>::operator!=(const BinaryTree<T>& other) const {
-    return root->count != other.root->count;
+    return root != other.root;
 }
