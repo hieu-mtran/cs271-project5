@@ -21,13 +21,16 @@ public:
     HuffmanCode();
     ~HuffmanCode();
 
-    map<char, int>              createFreqTable(string counts);
-    BinaryTree<char>            createHuffTree(const map<char, int>& freqTable);
-    map<char, string>           createEncodings(const BinaryTree<char> huffTree);
+    map<char, int>                      createFreqTable(string counts);
+    BinaryTree<char>*                   freqToBinaryTree(char letter, int freq);
+    priority_queue<BinaryTree<char>*, vector<BinaryTree<char>*>, greater<BinaryTree<char>*>>    freqTableToPQ(const map<char, int>& freqTable);
+
+    BinaryTree<char>*                   pqToHuffmanTree();
+    map<char, string>                   createEncodings(const BinaryTree<char>* huffTree);
 
 
 private:
+    priority_queue<BinaryTree<char>*, vector<BinaryTree<char>*>, greater<BinaryTree<char>*>> pq; // pqueue of type BinaryTree<char>, stored using vector, smallest element at top.
 
-    priority_queue<BinaryTree<char>, vector<BinaryTree<char>>, greater<BinaryTree<char>>> pq; // pqueue of type BinaryTree<char>, stored using vector, smallest element at top.
-
+    void                                encodingHelper(string currCode, const BTNode* currNode, map<char, string> encodings);
 };
