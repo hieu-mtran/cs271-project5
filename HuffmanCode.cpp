@@ -5,10 +5,13 @@
 // This is the implementation file for the HuffmanCode class.
 //============================================================================
 
+
+
 #include <iostream>
 #include <string>
 #include <map>
 #include "HuffmanCode.h"
+#include "BinaryTree.cpp"
 using namespace std;
 
 
@@ -169,6 +172,7 @@ string HuffmanCode::encodingsToString(map<char, string> encodings) {
         encodingsText += " ";
         encodingsText += encodings[letter];
         encodingsText += "\n";
+        cout << encodings.at(letter) << endl;
     }
     encodingsText += encodings['z']; // No new line after last character.
     return encodingsText;

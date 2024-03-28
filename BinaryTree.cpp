@@ -5,6 +5,7 @@
 // This is the implementation file for the BinaryTree class.
 //============================================================================
 
+
 #include <iostream>
 #include <string>
 #include "BinaryTree.h"
@@ -16,18 +17,17 @@ using namespace std;
 // Creates a new Binary Tree Node
 //============================================================================
 
-BTNode::BTNode()
-{
-    data = 0;
-    count = 0;
-}
+// BTNode::BTNode()
+// {
+//     data = 0;
+//     count = 0;
+// }
 
-BTNode::BTNode(char letter, int freq)
-{
-    data = letter;
-    count = freq;
-}
-
+// BTNode::BTNode(char letter, int freq)
+// {
+//     data = letter;
+//     count = freq;
+// }
 
 
 //============================================================================

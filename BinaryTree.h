@@ -9,75 +9,75 @@
 
 #include <iostream>
 #include <string>
-
+#include "BTNode.h"
 using namespace std;
 
-class BTNode
-{
-private:
-    char data;
-    int count;
-    BTNode* left;
-    BTNode* right;
-    BTNode* parent;
+// class BTNode
+// {
+// private:
+//     char data;
+//     int count;
+//     BTNode* left;
+//     BTNode* right;
+//     BTNode* parent;
 
-    template <typename> friend class BinaryTree;
-public:
-    BTNode();
-    BTNode(char letter, int count);
+//     template <typename> friend class BinaryTree;
+// public:
+//     BTNode();
+//     BTNode(char letter, int count);
 
-    // Getter methods
-    BTNode* getLeft() const {
-        return left;
-    }
+//     // Getter methods
+//     BTNode* getLeft() const {
+//         return left;
+//     }
 
-    BTNode* getRight() const {
-        return right;
-    }
+//     BTNode* getRight() const {
+//         return right;
+//     }
 
-    BTNode* getParent() const {
-        return parent;
-    }
+//     BTNode* getParent() const {
+//         return parent;
+//     }
 
-    char getData() const {
-        return data;
-    }
+//     char getData() const {
+//         return data;
+//     }
 
-    bool isLeaf() const {
-        return left == nullptr && right == nullptr;
-    }
+//     bool isLeaf() const {
+//         return left == nullptr && right == nullptr;
+//     }
 
-    // Comparison operators
-    bool operator>(const BTNode& other) const 
-    {
-        return count > other.count;
-    }
+//     // Comparison operators
+//     bool operator>(const BTNode& other) const 
+//     {
+//         return count > other.count;
+//     }
 
-    bool operator<(const BTNode& other) const 
-    {
-        return count < other.count;
-    }
+//     bool operator<(const BTNode& other) const 
+//     {
+//         return count < other.count;
+//     }
 
-    bool operator>=(const BTNode& other) const 
-    {
-        return count >= other.count;
-    }
+//     bool operator>=(const BTNode& other) const 
+//     {
+//         return count >= other.count;
+//     }
 
-    bool operator<=(const BTNode& other) const 
-    {
-        return count <= other.count;
-    }
+//     bool operator<=(const BTNode& other) const 
+//     {
+//         return count <= other.count;
+//     }
 
-    bool operator==(const BTNode& other) const 
-    {
-        return count == other.count;
-    }
+//     bool operator==(const BTNode& other) const 
+//     {
+//         return count == other.count;
+//     }
 
-    bool operator!=(const BTNode& other) const 
-    {
-        return count != other.count;
-    }
-};
+//     bool operator!=(const BTNode& other) const 
+//     {
+//         return count != other.count;
+//     }
+// };
 
 
 template<class T>

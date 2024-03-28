@@ -22,13 +22,13 @@ int main() {
 
     // Create encodings using Huffman tree
     map<char, string> encodings = huffman.createEncodings(huffmanTree);
+    cout << encodings.at('a');
 
-    string s = huffman.encodingsToString(encodings);
-    cout << s;
+    // string s = huffman.encodingsToString(encodings);
+    // cout << s;
 
 
-    // Clean up dynamically allocated memory
-    delete huffmanTree;
+    // delete huffmanTree;
 
     return 0;
 }
