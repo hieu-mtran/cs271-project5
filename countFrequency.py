@@ -18,6 +18,6 @@ with open("WarPeace.txt") as file:
 freqText = ''
 for char in alphabet:
     freqText += f'{freq[char]}\n'
-freqText = freqText[:-1]
+
 with open('frequency.txt', 'w') as file:
     file.write(freqText)
