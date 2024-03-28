@@ -22,6 +22,13 @@ BTNode::BTNode()
     count = 0;
 }
 
+BTNode::BTNode(char letter, int freq)
+{
+    data = letter;
+    count = freq;
+}
+
+
 
 //============================================================================
 // Default constructor
@@ -68,32 +75,32 @@ BTNode* BinaryTree<T>::copy(BTNode* node)
 // Inserts a new node into a binary tree (with BST properties)
 //============================================================================
 template<class T>
-void BinaryTree<T>::insert(const T& value)
+void BinaryTree<T>::insert(BTNode* node)
 {
-    BTNode* z = new BTNode;
-    z->data = value;
-    z->left = NULL;
-    z->right = NULL;
-    z->parent = NULL;
+    // BTNode* z = new BTNode;
+    // z->data = value;
+    // z->left = NULL;
+    // z->right = NULL;
+    // z->parent = NULL;
 
     BTNode* x = root;
     BTNode* y = NULL;
 
     while (x != NULL) {
         y = x;
-        if (z->data < x->data) 
+        if (node->data < x->data) 
             x = x->left;
         else 
             x = x->right;
     }
 
-    z->parent = y;
+    node->parent = y;
     if (y == NULL)
-        root = z;  
-    else if (z->data < y->data)
-        y->left = z;
+        root = node;  
+    else if (node->data < y->data)
+        y->left = node;
     else
-        y->right = z;
+        y->right = node;
 }
 
 //============================================================================

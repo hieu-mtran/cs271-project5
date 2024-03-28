@@ -19,6 +19,9 @@ private:
     BTNode* right;
     BTNode* parent;
 public:
+    BTNode();
+    BTNode(char letter, int count);
+
     // Comparison operators
     bool operator>(const BTNode& other) const 
     {
@@ -59,7 +62,7 @@ public:
     ~BinaryTree();
 
     BTNode*         copy(BTNode* node);
-    void            insert(const T& value);
+    void            insert(BTNode* node);
     BinaryTree<T>   merge(const BinaryTree<T>& tree1, const BinaryTree<T>& tree2) const;
     BTNode*         mergeTrees(BTNode* root1, BTNode* root2) const; // helper function for merge
     void            clear(BTNode* node);                                  
