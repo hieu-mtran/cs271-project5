@@ -29,7 +29,6 @@ int main() {
 
 
 
-    // delete huffmanTree;
 
     return 0;
 }

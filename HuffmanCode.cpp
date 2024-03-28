@@ -106,20 +106,16 @@ priority_queue<BinaryTree<BTNode*>*, vector<BinaryTree<BTNode*>*>, CompareBinary
 BinaryTree<BTNode*>* HuffmanCode::pqToHuffmanTree(){
     while (pq.size() > 1) // Repeat until only one large combined tree in pq.
     {
-        // cout << pq.top()->getRoot()->getCount() << endl;
         // Gets the two smallest trees.
         BinaryTree<BTNode*>* tree1 = pq.top();
-        // cout << tree1->getRoot()->getData() << " ";
         pq.pop();
         BinaryTree<BTNode*>* tree2 = pq.top();
-        // cout << tree2->getRoot()->getData() << " ";
 
         pq.pop();
 
         // Creates a combined tree.
         BinaryTree<BTNode*>* combinedTree = new BinaryTree<BTNode*>();
         *combinedTree = combinedTree->merge(*tree2, *tree1); // Greater on the left.
-        // cout << combinedTree->getRoot()->getData() << endl;
 
         pq.push(combinedTree); // Adds combined tree back into the pq.
     }
@@ -134,7 +130,6 @@ BinaryTree<BTNode*>* HuffmanCode::pqToHuffmanTree(){
  * Return: map<char, string> encodings: a map of letters to their Huffman codes.
  */
 map<char, string> HuffmanCode::createEncodings(const BinaryTree<BTNode*>* huffTree) {
-    // cout << huffTree->getRoot()->getData();
     map<char, string> encodings; 
     string code = ""; // Empty to start.
     BTNode* root = huffTree->getRoot(); // Starting at the root node.
@@ -151,7 +146,6 @@ map<char, string> HuffmanCode::createEncodings(const BinaryTree<BTNode*>* huffTr
  * Return: None. encodings is fully populated for the tree.
  */
 void HuffmanCode::encodingHelper(string currCode, const BTNode* currNode, map<char, string> &encodings){
-    cout << currCode <<endl;
     if (currNode == nullptr) // When a node is not a leaf, but missing a child.
     {
         return;
@@ -181,7 +175,6 @@ string HuffmanCode::encodingsToString(map<char, string> encodings) {
         encodingsText += " ";
         encodingsText += encodings[letter];
         encodingsText += "\n";
-        // cout << encodings.at(letter) << endl;
     }
     encodingsText += 'z';
     encodingsText += ' ';
