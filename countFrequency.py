@@ -1,3 +1,6 @@
+# Hieu Tran, Max Wisnefski, Aidan Jeansonne
+# March 2024
+# countFrequency.py
 # Parsing text for letter frequency
 # reads the WarPeace.txt file (via stdin redirection) and 
 # counts instances of letters (converted to lower case). 
