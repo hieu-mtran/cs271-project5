@@ -35,3 +35,10 @@ for char in text:
             encoded_txt = encoded_txt + codes_dict[key] #+ " "
 
 print(encoded_txt)
+
+#writing the encoded song lyrics to a .txt file for the next step
+with open("encodedSong.txt",'w') as file:
+    file.writelines(encoded_txt)
+
+
+
