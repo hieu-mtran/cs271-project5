@@ -1,11 +1,13 @@
-all: HuffmanTester encode decode frequency
+all: frequency HuffmanTester encode decode
 
-HuffmanTester:
+frequency: countFrequency.py 
+	python countFrequency.py
+
+HuffmanTester: HuffmanTester.cpp HuffmanCode.h
+	g++ -o HuffTest HuffmanTester.cpp 
 
 encode: encode.py
 	python encode.py
 
-decode:
-
-frequency: CountFrequency.py 
-	python frequency
+decode: 
+	g++ -o decoding decode.cpp
