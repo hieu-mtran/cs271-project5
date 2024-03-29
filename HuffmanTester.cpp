@@ -25,7 +25,8 @@ int main(int argc, char *argv[]) {
          //adding each line of data to out counts string
          counts = counts + tp + "\n";
     }
-    cout << counts << endl;
+    //cout << "Frequencies of every letter in .txt file:\n";
+    //cout << counts << endl;
 
     f.close();
 
@@ -51,9 +52,13 @@ int main(int argc, char *argv[]) {
     // cout << encodings.at('a');
 
     string s = huffman.encodingsToString(encodings);
+    cout << "The encodings for every letter:\n";
     cout << s << endl;
 
-
+    //outputting the encodings as a .txt file
+    ofstream out("encodings.txt");
+    out << s;
+    out.close();
 
 
     return 0;
