@@ -4,7 +4,8 @@
 # this program reads the code vectors from the text file.  
 # It then reads some block of text and translates the block of text into a code.
 
-text = "this text is just to test the encoding\nabcdefghijklmnopqrstuvwxyz"
+#text = "this text is just to test the encoding\nabcdefghijklmnopqrstuvwxyz"
+text = input("Enter text to encode ")
 
 codes_dict = {}
 
@@ -26,6 +27,6 @@ for char in text:
         encoded_txt = encoded_txt + "\n"
     for key in keys:
         if char == key:
-            encoded_txt = encoded_txt + codes_dict[key] + " "
+            encoded_txt = encoded_txt + codes_dict[key] #+ " "
 
 print(encoded_txt)
