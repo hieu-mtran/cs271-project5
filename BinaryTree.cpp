@@ -5,30 +5,11 @@
 // This is the implementation file for the BinaryTree class.
 //============================================================================
 
-
 #include <iostream>
 #include <string>
 #include "BinaryTree.h"
 
 using namespace std;
-
-//============================================================================
-// Default Node constructor
-// Creates a new Binary Tree Node
-//============================================================================
-
-// BTNode::BTNode()
-// {
-//     data = 0;
-//     count = 0;
-// }
-
-// BTNode::BTNode(char letter, int freq)
-// {
-//     data = letter;
-//     count = freq;
-// }
-
 
 //============================================================================
 // Default constructor
@@ -97,12 +78,6 @@ BTNode* BinaryTree<T>::getRoot() const
 template<class T>
 void BinaryTree<T>::insert(BTNode* node)
 {
-    // BTNode* z = new BTNode;
-    // z->data = value;
-    // z->left = NULL;
-    // z->right = NULL;
-    // z->parent = NULL;
-
     BTNode* x = root;
     BTNode* y = NULL;
 
@@ -121,6 +96,35 @@ void BinaryTree<T>::insert(BTNode* node)
         y->left = node;
     else
         y->right = node;
+}
+
+template<class T>
+void BinaryTree<T>::insert(const char& character, const string& code) 
+{
+    if (root == nullptr) {
+        root = new BTNode(character, 0); // Assuming count is initialized to 0
+    }
+
+    BTNode* current = root;
+    for (char bit : code) {
+        if (bit == '0') {
+            if (current->left == nullptr) {
+                current->left = new BTNode(' ', 0); // Placeholder node
+                current->left->parent = current;
+            }
+            current = current->left;
+        } else {
+            if (current->right == nullptr) {
+                current->right = new BTNode(' ', 0); // Placeholder node
+                current->right->parent = current;
+            }
+            current = current->right;
+        }
+    }
+
+    // Update the node with the character and its count
+    current->data = character;
+    current->count = 0;
 }
 
 //============================================================================
@@ -160,6 +164,45 @@ BTNode* BinaryTree<T>::mergeTrees(BTNode* root1, BTNode* root2) const {
     root1->right = mergeTrees(root1->right, root2->right);
 
     return root1;
+}
+
+//============================================================================
+// decode
+// Decodes text encoded in binary 
+// Returns: decoded string
+// Inputs: encoded string
+//============================================================================
+template<class T>
+string BinaryTree<T>::decode(const string& encodedText) {
+    string decodedText;
+    BTNode* current = root;
+
+    for (char bit : encodedText) {
+        // Check if the current bit is '0' and the left child exists
+        if (bit == '0' && current->left != nullptr) {
+            current = current->left;
+        } 
+        // Check if the current bit is '1' and the right child exists
+        else if (bit == '1' && current->right != nullptr) {
+            current = current->right;
+        }
+        // Check if the current bit is a newline character '\n'
+        else if (bit == '\n') {
+            // Add the newline character to the decoded text
+            decodedText += '\n';
+            // Reset current to the root for the next character
+            current = root;
+        }
+
+        // Check if the current node's data is not a space
+        if (current->data != ' ' && bit != '\n') {
+            // Add the current node's data to the decoded text
+            decodedText += current->data;
+            // Reset current to the root for the next character
+            current = root;
+        }
+    }
+    return decodedText;
 }
 
 //============================================================================

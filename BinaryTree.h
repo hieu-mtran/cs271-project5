@@ -12,74 +12,6 @@
 #include "BTNode.h"
 using namespace std;
 
-// class BTNode
-// {
-// private:
-//     char data;
-//     int count;
-//     BTNode* left;
-//     BTNode* right;
-//     BTNode* parent;
-
-//     template <typename> friend class BinaryTree;
-// public:
-//     BTNode();
-//     BTNode(char letter, int count);
-
-//     // Getter methods
-//     BTNode* getLeft() const {
-//         return left;
-//     }
-
-//     BTNode* getRight() const {
-//         return right;
-//     }
-
-//     BTNode* getParent() const {
-//         return parent;
-//     }
-
-//     char getData() const {
-//         return data;
-//     }
-
-//     bool isLeaf() const {
-//         return left == nullptr && right == nullptr;
-//     }
-
-//     // Comparison operators
-//     bool operator>(const BTNode& other) const 
-//     {
-//         return count > other.count;
-//     }
-
-//     bool operator<(const BTNode& other) const 
-//     {
-//         return count < other.count;
-//     }
-
-//     bool operator>=(const BTNode& other) const 
-//     {
-//         return count >= other.count;
-//     }
-
-//     bool operator<=(const BTNode& other) const 
-//     {
-//         return count <= other.count;
-//     }
-
-//     bool operator==(const BTNode& other) const 
-//     {
-//         return count == other.count;
-//     }
-
-//     bool operator!=(const BTNode& other) const 
-//     {
-//         return count != other.count;
-//     }
-// };
-
-
 template<class T>
 class BinaryTree 
 {
@@ -91,8 +23,10 @@ public:
     BTNode*         getRoot() const;
     BTNode*         copy(BTNode* node) const;
     void            insert(BTNode* node);
+    void            insert(const char& character, const string& code);
     BinaryTree<T>   merge(const BinaryTree<T>& tree1, const BinaryTree<T>& tree2) const;
     BTNode*         mergeTrees(BTNode* root1, BTNode* root2) const; // helper function for merge
+    string          decode(const string& encodedText);
     void            clear(BTNode* node);                                  
 
     // Comparison operators
