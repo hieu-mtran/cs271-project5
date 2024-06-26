@@ -1,13 +1,16 @@
-all: frequency HuffmanTester encode decode
+all: HuffTest decode
 
-frequency: countFrequency.py 
-	python countFrequency.py
+HuffTest: HuffmanTester.o BinaryTree.o
+	g++ HuffmanTester.o BinaryTree.o -o HuffTest
 
-HuffmanTester: HuffmanTester.cpp HuffmanCode.h
-	g++ -o HuffTest HuffmanTester.cpp 
+decode: decode.o BinaryTree.o
+	g++ decode.o BinaryTree.o -o decode
 
-encode: encode.py
-	python encode.py
+HuffmanTester.o: HuffmanTester.cpp HuffmanCode.h BinaryTree.h
+	g++ -c HuffmanTester.cpp -o HuffmanTester.o
 
-decode: 
-	g++ -o decoding decode.cpp
+decode.o: decode.cpp BinaryTree.h BTNode.h
+	g++ -c decode.cpp -o decode.o
+
+BinaryTree.o: BinaryTree.cpp BinaryTree.h BTNode.h
+	g++ -c BinaryTree.cpp -o BinaryTree.o
